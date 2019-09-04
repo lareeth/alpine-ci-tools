@@ -1,0 +1,16 @@
+language: minimal
+
+services:
+  - docker
+  
+script:
+  - docker build -t "lareeth/alpine-ci-tools:latest" -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" .
+  
+before_deploy:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  
+deploy:
+  provider: script
+  script: docker push "lareeth/alpine-ci-tools:latest" && docker push "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER"
+  on:
+    branch: master
