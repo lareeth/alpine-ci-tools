@@ -1,11 +1,18 @@
 language: minimal
 
+branches:
+  only: 
+    - master
+
 services:
   - docker
-  
+
 script:
   - docker build -t "lareeth/alpine-ci-tools:latest" -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" .
-  
+  - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
+  - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm version --client
+  - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" az --version 
+
 before_deploy:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   
