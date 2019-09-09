@@ -1,5 +1,9 @@
 language: minimal
 
+branches:
+  only: 
+    - master
+
 services:
   - docker
   
