@@ -15,7 +15,7 @@ before_install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - export DOCKER_CLI_EXPERIMENTAL=enabled
   - docker buildx ls
-  - docker buildx create --name testbuilder
+  - docker buildx create --name testbuilder --platform linux/amd64,linux/arm64,linux/arm/v7
   - docker buildx ls
   - docker buildx use testbuilder
   - docker buildx ls
