@@ -15,7 +15,7 @@ before_install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
 script:
-  - docker build -t "lareeth/alpine-ci-tools:latest" -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" .
+  - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t "lareeth/alpine-ci-tools:latest" -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" .
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" az --version 
