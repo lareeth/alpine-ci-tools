@@ -7,6 +7,11 @@ branches:
 services:
   - docker
 
+addons:
+  apt:
+    packages:
+      - docker-ce
+
 script:
   - docker build -t "lareeth/alpine-ci-tools:latest" -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" .
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
