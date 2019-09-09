@@ -24,6 +24,7 @@ before_install:
 
 script:
   - docker buildx build --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t "lareeth/alpine-ci-tools:latest" -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" .
+  - docker buildx ls
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" az --version 
