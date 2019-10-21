@@ -4,7 +4,7 @@ ARG KUBERNETES_VERSION=1.15.5
 ARG HELM_VERSION=2.14.3
 ARG AZURE_VERSION=2.0.75
 
-RUN apk add --update curl bash
+RUN apk add --update curl bash git
 
 # Kubernetes CLI
 RUN curl -s -LO https://storage.googleapis.com/kubernetes-release/release/v${KUBERNETES_VERSION}/bin/linux/amd64/kubectl && \

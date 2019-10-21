@@ -6,6 +6,7 @@ Includes
 
 - `curl`
 - `bash`
+- `git`
 - `kubectl`
 - `helm`
 - `az`
