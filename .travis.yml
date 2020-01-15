@@ -8,7 +8,10 @@ services:
   - docker
 
 script:
-  - docker build -t "lareeth/alpine-ci-tools:latest" -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" .
+  - docker build \
+    -t "lareeth/alpine-ci-tools:latest" \
+    -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" \
+    --build-arg VCS_REF=`git rev-parse --short HEAD` .
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm3 version --client
