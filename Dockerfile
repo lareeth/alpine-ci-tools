@@ -1,5 +1,10 @@
 FROM alpine
 
+ARG VCS_REF
+
+LABEL org.label-schema.vcs-ref=$VCS_REF \
+	org.label-schema.vcs-url="https://github.com/lareeth/alpine-ci-tools"
+
 ARG KUBERNETES_VERSION=1.15.7
 ARG HELM2_VERSION=2.16.1
 ARG HELM3_VERSION=3.0.2
