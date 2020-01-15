@@ -8,5 +8,5 @@ Includes
 - `bash`
 - `git`
 - `kubectl`
-- `helm`
+- `helm2` `helm3`
 - `az`
