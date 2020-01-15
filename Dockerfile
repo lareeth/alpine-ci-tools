@@ -1,8 +1,9 @@
 FROM alpine
 
-ARG KUBERNETES_VERSION=1.15.5
-ARG HELM_VERSION=2.14.3
-ARG AZURE_VERSION=2.0.75
+ARG KUBERNETES_VERSION=1.15.7
+ARG HELM2_VERSION=2.16.1
+ARG HELM3_VERSION=3.0.2
+ARG AZURE_VERSION=2.0.80
 
 RUN apk add --update curl bash git
 
@@ -11,11 +12,17 @@ RUN curl -s -LO https://storage.googleapis.com/kubernetes-release/release/v${KUB
 	chmod +x ./kubectl && \
 	mv ./kubectl /usr/local/bin/kubectl
 
-# Helm
-RUN curl -s -LO https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
-	tar -zxvf helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
+# Helm 2
+RUN curl -s -LO https://get.helm.sh/helm-v${HELM2_VERSION}-linux-amd64.tar.gz && \
+	tar -zxvf helm-v${HELM2_VERSION}-linux-amd64.tar.gz && \
 	mv linux-amd64/helm /usr/local/bin/helm && \
-	rm -rf helm-v${HELM_VERSION}-linux-amd64.tar.gz
+	rm -rf helm-v${HELM2_VERSION}-linux-amd64.tar.gz
+
+# Helm 3
+RUN curl -s -LO https://get.helm.sh/helm-v${HELM3_VERSION}-linux-amd64.tar.gz && \
+	tar -zxvf helm-v${HELM3_VERSION}-linux-amd64.tar.gz && \
+	mv linux-amd64/helm /usr/local/bin/helm3 && \
+	rm -rf helm-v${HELM3_VERSION}-linux-amd64.tar.gz
 
 # Azure CLI
 RUN apk add --update py-pip && \
