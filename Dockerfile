@@ -1,8 +1,9 @@
-FROM alpine
+FROM alpine:3.11
 
 ARG VCS_REF
 
-LABEL org.label-schema.vcs-ref=$VCS_REF \
+LABEL maintainer="gareth.luckett@gmail.com" \
+	org.label-schema.vcs-ref=$VCS_REF \
 	org.label-schema.vcs-url="https://github.com/lareeth/alpine-ci-tools"
 
 ARG KUBERNETES_VERSION=1.15.7
