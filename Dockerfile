@@ -6,10 +6,10 @@ ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF \
 	org.label-schema.vcs-url="https://github.com/lareeth/alpine-ci-tools"
 
-ARG KUBERNETES_VERSION=1.15.7
-ARG HELM2_VERSION=2.16.1
-ARG HELM3_VERSION=3.0.2
-ARG AZURE_VERSION=2.0.80
+ARG KUBERNETES_VERSION=1.15.11
+ARG HELM2_VERSION=2.16.3
+ARG HELM3_VERSION=3.1.2
+ARG AZURE_VERSION=2.2.0
 
 RUN apk add --update curl bash git
 
