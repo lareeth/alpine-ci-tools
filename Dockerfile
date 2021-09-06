@@ -31,7 +31,7 @@ RUN curl -s -LO https://get.helm.sh/helm-v${HELM3_VERSION}-linux-amd64.tar.gz &&
 	rm -rf helm-v${HELM3_VERSION}-linux-amd64.tar.gz
 
 # Azure CLI
-RUN apk add --update py-pip && \
-	apk add --update --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
+RUN apk add --update py3-pip && \
+	apk add --update --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
 	pip --no-cache-dir install azure-cli==${AZURE_VERSION} && \
 	apk del --purge build
