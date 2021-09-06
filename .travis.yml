@@ -16,7 +16,7 @@ jobs:
 
 before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo add-apt-repository "deb [arch=${TRAVIS_CPU_ARCH}] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
@@ -26,6 +26,7 @@ script:
     -t "lareeth/alpine-ci-tools:latest"
     -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER"
     --build-arg VCS_REF=`git rev-parse --short HEAD` .
+    --build-arg ARCH="${TRAVIS_CPU_ARCH}"
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm3 version --client
