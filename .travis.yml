@@ -15,8 +15,9 @@ before_install:
 
 script:
   - docker version
-  - docker build
-    -t "lareeth/alpine-ci-tools:latest"
+  - docker buildx version
+  - docker buildx create --use
+  - docker buildx build --load --platform linux/amd64
     -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER"
     --build-arg VCS_REF=`git rev-parse --short HEAD` .
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
@@ -26,9 +27,14 @@ script:
 
 before_deploy:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  
+
 deploy:
   provider: script
-  script: docker push "lareeth/alpine-ci-tools:latest" && docker push "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER"
+  script: 
+    - docker buildx create --use
+    - docker buildx build --push --platform linux/amd64
+      -t "lareeth/alpine-ci-tools:latest"
+      -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER"
+      --build-arg VCS_REF=`git rev-parse --short HEAD` .
   on:
     branch: master
