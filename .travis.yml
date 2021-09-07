@@ -18,13 +18,9 @@ script:
   - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
   - docker buildx version
   - docker buildx create --use
-  - docker buildx build --load --platform linux/amd64
+  - travis_wait 30 docker buildx build --platform linux/amd64,linux/arm64
     -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER"
     --build-arg VCS_REF=`git rev-parse --short HEAD` .
-  - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
-  - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm version --client
-  - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm3 version --client
-  - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" az --version 
 
 before_deploy:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
