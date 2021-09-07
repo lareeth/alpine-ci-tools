@@ -25,7 +25,7 @@ script:
   - docker build
     -t "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER"
     --build-arg VCS_REF=`git rev-parse --short HEAD`
-    --build-arg TARGETARCH="${TRAVIS_CPU_ARCH}"
+    --build-arg TARGETARCH="${TRAVIS_CPU_ARCH}" .
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" kubectl version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm version --client
   - docker run "lareeth/alpine-ci-tools:$TRAVIS_BUILD_NUMBER" helm3 version --client
