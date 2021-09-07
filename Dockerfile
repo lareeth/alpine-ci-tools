@@ -36,3 +36,8 @@ RUN apk add --update python3 py3-pip py3-pynacl py3-cryptography py3-bcrypt py3-
 	apk add --update --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev py3-wheel make && \
 	pip --no-cache-dir install azure-cli==${AZURE_VERSION} && \
 	apk del --purge build
+
+RUN kubectl version --client
+RUN helm version --client
+RUN helm3 version --client
+RUN az --version 
