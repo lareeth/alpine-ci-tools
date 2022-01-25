@@ -1,6 +1,6 @@
 # alpine-ci-tools
 
-[![Build Status](https://travis-ci.com/lareeth/alpine-ci-tools.svg?branch=master)](https://travis-ci.com/lareeth/alpine-ci-tools) [![Docker Pulls](https://img.shields.io/docker/pulls/lareeth/alpine-ci-tools.svg)](https://hub.docker.com/r/lareeth/alpine-ci-tools) [![Layers](https://images.microbadger.com/badges/image/lareeth/alpine-ci-tools:latest.svg)](https://microbadger.com/images/lareeth/alpine-ci-tools:latest "Get your own image badge on microbadger.com")
+[![Docker Image CI](https://github.com/lareeth/alpine-ci-tools/actions/workflows/docker-image.yml/badge.svg)](https://github.com/lareeth/alpine-ci-tools/actions/workflows/docker-image.yml) [![Docker Pulls](https://img.shields.io/docker/pulls/lareeth/alpine-ci-tools.svg)](https://hub.docker.com/r/lareeth/alpine-ci-tools)
 
 Includes
 
