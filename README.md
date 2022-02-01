@@ -10,3 +10,15 @@ Includes
 - `kubectl`
 - `helm2` `helm3`
 - `az`
+
+## To Use
+
+From Docker Hub
+```
+docker pull lareeth/alpine-ci-tools
+```
+
+From GitHub Packages
+```
+docker pull ghcr.io/lareeth/alpine-ci-tools
+```
